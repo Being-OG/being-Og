@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deeshi Swag</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo-icon.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <section id="header">
+        <a href="" style="text-decoration: none;color: rgba(0, 0, 0, 0.733);font-weight:500;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 30px;">Deeshi Swag</a>
+        <div>
+
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li> <a class="active" href="shop.html">Shop</a></li>
+
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="cart.html"><i class="far fa-shopping-bag" style="font-weight: 550;"> Cart</i></a></li>
+
+
+
+
+
+
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+
+
+        </div>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+
+        </div>
+
+        <div id="search-bar">
+            <input type="text" id="product-search" placeholder="Search products...">
+            <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+        </div>
+    </section>
+
+
+    <section id="pdetails" class="s-1">
+
+        <div class="spi">
+            <img src="img/tote3.png" width="100%" id="MainImg" alt="">
+            <div class="sig">
+                <div class="sa">
+                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+
+                </div>
+                <div class="sa">
+                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+
+                </div>
+
+                <div class="sa">
+                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+
+                </div>
+
+                <div class="sa">
+                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+        <div class="spd">
+            <h6> Home / Premium TOTE Bags</h6>
+            <h4>Premium TOTE Bags</h4>
+            <h2>BDT 499</h2>
+            <select id="sizeSelect">
+
+        <option>Black</option>
+        <option>White</option>
+       
+      </select>
+            <input type="number" id="quantity" value="1">
+
+            <button id="addToCartBtn" onclick="addToCart(); alert('Product added successfully!')">Add To Cart </button>
+
+            <p>#000001</p>
+            <input type="hidden" id="productId" value="000001">
+            <input type="hidden" id="productName" value="Premium TOTE Bags">
+            <input type="hidden" id="productPrice" value="499">
+            <input type="hidden" id="productImage" value="img/tote3.png">
+
+
+
+            <h4>Product Details</h4>
+            <span> <b>Features:</b><br>
+• Stylish Designs: Discover a curated selection of stylish, unique, and adorable designs exclusively chosen for you.<br>
+• Measurement: Height. 16 inch, Width: 14 inch, Strap: 24 inch round (12 inch height).<br>
+• Fabric: High-quality export quality cotton canvas thick fabric.<br>
+• Washable and Dry Friendly.<br>
+• Best Quality Smooth Zipper.<br><br>
+<b>Print Technology:</b><br>
+• DTF Print: Direct To Fabric printing technique ensures vibrant, detailed, and durable designs on your tote bags.<br><br>
+<b>Why Choose Our Bags:</b><br>
+• Premium Quality: Crafted with precision using high-grade materials.<br>
+• Customization: Make it truly yours personalize your tote with unique prints<br>
+• Durability: Sturdy and reliable, our bags are built to withstand your daily adventures.<br>
+• Wash with Confidence: No need to worry our prints stay intact, ensuring durability style.</span>
+        </div>
+    </section>
+    <section id="pd-1" class="s-1">
+        <h2>New Arrivals</h2>
+        <p>Summer Collections With Deeshi Swag Modern Designs</p>
+        <div class="p-con">
+            <div class="pro" onclick="window.location.href='s3product.html';">
+                <img src="img/tote4.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag a</span>
+                    <h5>Premium TOTE Bags </h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s4product.html';">
+                <img src="img/tote5.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag b </span>
+                    <h5>Premium TOTE Bags </h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s5product.html';">
+                <img src="img/tote6.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag c </span>
+                    <h5>Premium TOTE Bags</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s6product.html';">
+                <img src="img/tote7.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag </span>
+                    <h5>Premium TOTE Bags</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <section id="newsletter" class="s-1 section-m1">
+        <div class="nt">
+            <h4>Sign Up For News Letters</h4><br>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+        </div>
+        <div class="form">
+            <input type="email" id="email" placeholder="Email Adress" required>
+            <button class="bt">  Sign Up  </button>
+        </div>
+
+    </section>
+
+    <footer class="s-1">
+        <div class="c">
+            <a href="" style="text-decoration: none;color: rgba(0, 0, 0, 0.733);font-weight:500;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 30px;">Deeshi Swag</a><br>
+            <h4>Contact</h4>
+            <p><strong>Adress: </strong>Banasree Dhaka 1000 C block Road no 4</p>
+            <p><strong>Phone: </strong>(+880)19xxxxxxxx</p>
+            <p><strong>Hours: </strong>10:00 - 18:00, Sat - Fri</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f" style="font-weight: 400;"></i>
+                    <i class="fab fa-instagram" style="font-weight: 400;"></i>
+                    <i class="fab fa-twitter" style="font-weight: 400;"></i>
+                    <i class="fab fa-pinterest" style="font-weight: 400;"></i>
+                    <i class="fab fa-youtube" style="font-weight: 400;"></i>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="c">
+            <h4>About</h4>
+            <a href="">About Us</a>
+            <a href="">Delivery Informations</a>
+            <a href="">Privacy & Policy</a>
+            <a href="">Terms & Conditions</a>
+            <a href="">Contact Us</a>
+        </div>
+        <div class="c">
+            <h4>My Account</h4>
+            <a href="">Sign In</a>
+            <a href="">Delivery Informations</a>
+            <a href="">View Cart</a>
+            <a href="">My Wishlist</a>
+            <a href="">Track My Order</a>
+            <a href="">Help</a>
+        </div>
+        <div class="c in">
+            <h4>Install App</h4>
+            <p>From App Store or Goolge Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
+
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>© 2024, Deeshi Swag Created by Sohorab Mahmud Fahim</p>
+        </div>
+
+    </footer>
+
+    <script>
+        var MainImg = document.getElementById("MainImg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        smallimg[0].onclick = function() {
+            MainImg.src = smallimg[0].src;
+        }
+        smallimg[1].onclick = function() {
+            MainImg.src = smallimg[1].src;
+        }
+        smallimg[2].onclick = function() {
+            MainImg.src = smallimg[2].src;
+        }
+        smallimg[3].onclick = function() {
+            MainImg.src = smallimg[3].src;
+        }
+    </script>
+    <script>
+        // Function to perform product search
+        function searchProducts() {
+            // Get the value entered in the search input
+            const searchText = document.getElementById("product-search").value.toLowerCase();
+
+            // Get all product descriptions
+            const descriptions = document.querySelectorAll(".description");
+
+            // Loop through each product and check if the search text is present in the product name
+            descriptions.forEach((description) => {
+                const productName = description.querySelector("h5").innerText.toLowerCase();
+                const product = description.closest(".pro");
+                if (productName.includes(searchText)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+    <script>
+        function addToCart() {
+            const productName = document.getElementById("productName").value;
+            const productPrice = parseFloat(document.getElementById("productPrice").value);
+            const productImage = document.getElementById("productImage").value;
+            const selectedSize = document.getElementById("sizeSelect").value;
+            const productQuantity = document.getElementById("quantity").value;
+            const productId = document.getElementById("productId").value;
+
+            const cartItem = {
+                id: productId,
+                name: productName,
+                price: productPrice,
+                image: productImage,
+                size: selectedSize,
+                quantity: productQuantity,
+            };
+
+
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+
+            const existingProductIndex = cart.findIndex((item) => item.name === productName);
+
+            if (existingProductIndex !== -1) {
+
+                cart[existingProductIndex].quantity += 1;
+            } else {
+
+                cart.push(cartItem);
+            }
+
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
+    </script>
+
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

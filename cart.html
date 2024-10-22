@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Being OG</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo-icon.jpg">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="cart.css">
+    <style>
+        /* General styles for the header */
+        
+        #header a {
+            text-decoration: none;
+            color: rgba(0, 0, 0, 0.733);
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 30px;
+        }
+        /* Cart Item Input Styles */
+        
+        .cart-item input[type="number"] {
+            width: 70px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .cart-item input[type="number"]:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+        /* Delivery Options Styles */
+        
+        .delivery-options {
+            padding: 20px 0;
+            display: none;
+        }
+        
+        .delivery-options input[type="radio"] {
+            display: none;
+        }
+        
+        .delivery-options label {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+        
+        .delivery-options input[type="radio"]:checked+label {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+        
+        .delivery-options label:hover {
+            background-color: #f8f9fa;
+            border-color: #007bff;
+        }
+        
+        .total,
+        .delivery-options {
+            margin-bottom: 10px;
+        }
+        
+        .checkout-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #0056b3;
+        }
+        /* Receipt Styles */
+        
+        .receipt {
+            margin-bottom: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.185);
+            padding-left: 10px;
+        }
+        
+        .receipt p {
+            font-size: 12px;
+        }
+        /* Checkout Form Styles */
+        
+        .checkout-form {
+            margin-top: 50px;
+        }
+        
+        .checkout-form input,
+        .checkout-form button {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .checkout-form button {
+            background-color: #01ffee4d;
+            color: #000000ab;
+            cursor: pointer;
+            margin: 0 0 10px 0;
+        }
+        
+        #close {
+            display: none;
+        }
+        
+        @media (max-width: 799px) {
+            #close {
+                display: initial;
+                position: absolute;
+                top: 30px;
+                color: #222;
+                font-size: 24px;
+            }
+        }
+        /* Additional Styles for Sections */
+        
+        #cart {
+            padding: 20px;
+        }
+        
+        #checkout {
+            padding: 20px;
+        }
+        
+        #newsletter {
+            padding: 20px;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        #header a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 600;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+        }
+        /* Cart Item Styles */
+        
+        .cart-item {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .cart-item input[type="number"] {
+            width: 80px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .cart-item input[type="number"]:focus {
+            outline: none;
+            border-color: #ff6600;
+            box-shadow: 0 0 0 0.2rem rgba(255, 102, 0, 0.25);
+        }
+        /* Delivery Options Styles */
+        
+        .delivery-options {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .delivery-options input[type="radio"] {
+            display: none;
+        }
+        
+        .delivery-options label {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 10px 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, border-color 0.3s;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .delivery-options input[type="radio"]:checked+label {
+            background-color: #ff6600;
+            color: white;
+            border-color: #ff6600;
+        }
+        
+        .delivery-options label:hover {
+            background-color: #f9f9f9;
+            border-color: #ff6600;
+        }
+        /* Checkout Button Styles */
+        
+        .checkout-btn {
+            background-color: #ff6600;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            width: 100%;
+            text-align: center;
+            margin-top: 20px;
+        }
+        
+        .checkout-btn:hover {
+            background-color: #e65c00;
+        }
+        /* Receipt Styles */
+        
+        .receipt {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .receipt p {
+            font-size: 14px;
+            color: #666;
+        }
+        /* Checkout Form Styles */
+        
+        .checkout-form {
+            margin-top: 50px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .checkout-form input,
+        .checkout-form button {
+            width: 100%;
+            margin-bottom: 15px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        
+        .checkout-form button {
+            background-color: #ff6600;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .checkout-form button:hover {
+            background-color: #e65c00;
+        }
+        /* Responsive Close Button for Mobile */
+        
+        #close {
+            display: none;
+        }
+        
+        @media (max-width: 799px) {
+            #close {
+                display: initial;
+                position: absolute;
+                top: 30px;
+                right: 20px;
+                color: #ff6600;
+                font-size: 24px;
+            }
+        }
+        /* Additional Section Styles */
+        
+        #cart,
+        #checkout,
+        #newsletter {
+            padding: 20px;
+        }
+        
+        #cart {
+            background-color: #ffffff;
+            margin-bottom: 20px;
+            padding: 25px;
+            border-radius: 8px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+
+<body>
+    <section id="header">
+        <a href="">Being OG</a>
+        <div>
+            <ul id="navbar">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a class="active" href="cart.html"><i class="far fa-shopping-bag"> Cart</i></a></li>
+
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+        </div>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+        </div>
+    </section>
+
+    <section id="cart" class="s-1">
+        <h2>Shopping Cart</h2>
+        <div class="cart-container">
+            <div class="cart-items" id="cartItems">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+
+            <div id="checkbox" style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.171); margin: 20px 10px; border-radius: 10px;">
+                <h4 style="padding-top: 15px;">Delivery Options</h4>
+                <div class="delivery-options" id="deliveryOptions">
+                    <input type="radio" id="insideDhaka" name="deliveryOption" value="insideDhaka" onchange="calculateTotal()">
+                    <label for="insideDhaka">Inside Dhaka (<span id="insideDhakaFee">Free</span>)</label><br>
+                    <input type="radio" id="outsideDhaka" name="deliveryOption" value="outsideDhaka" onchange="calculateTotal()">
+                    <label for="outsideDhaka">Outside Dhaka (<span id="outsideDhakaFee">Free</span>)</label><br>
+                </div>
+                <div class="receipt" id="receipt">
+                    <p>Product Value: <span id="productValue">BDT 0.00</span></p>
+                    <p>Delivery Charge: <span id="deliveryCharge">BDT 0.00</span></p>
+                    <p>Total: <span id="totalPrice">BDT 0.00</span></p>
+                </div>
+                <p id="noteMessage"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="checkout" class="s-1 section-m1 checkout-form">
+        <div id="checkbox" class="checkout-header">
+            <h2>Checkout</h2>
+        </div>
+        <form id="checkoutForm" class="checkout-details" onsubmit="confirmOrder(event)">
+            <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+            <input type="text" name="address" id="address" placeholder="Address" required>
+            <input type="text" name="contactNumber" id="contactNumber" placeholder="Contact Number" required>
+            <input type="email" name="email" id="email" placeholder="Email" required>
+            <input type="text" name="batch" id="batch" placeholder="Batch No" required>
+            <div class="payment-section">
+                <label>Payment Method</label>
+                <select id="Payment" required>
+                    <option>Bkash ( +880 16240-63328 )</option>
+                    <option>Nagad ( +880 16240-63328 )</option>
+                    <option>Rocket ( +880 16240-63328 )</option>
+                    <option>Upay ( +880 16240-63328 )</option>
+                </select>
+            </div>
+            <input type="text" name="PaymentNumber" id="PaymentNumber" placeholder="Payment Number" required>
+            <input type="text" name="Transactionid" id="Transactionid" placeholder="Transaction ID" required>
+            <input type="text" name="reference" id="reference" placeholder="Affiliate Reference (optional)">
+            <textarea id="notes" placeholder="Write here if you want to say anything to the seller..."></textarea>
+            <input type="submit" value="Confirm Your Order" class="checkout-btn">
+        </form>
+    </section>
+
+    </section>
+    <section id="newsletter" class="s-1 section-m1">
+        <div class="nt">
+            <h4>Sign Up For News Letters</h4><br>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
+        </div>
+        <div class="form">
+            <input type="email" id="email" placeholder="Email Adress" required>
+            <button class="bt">  Sign Up  </button>
+        </div>
+    </section>
+
+    <footer class="s-1">
+        <div class="c">
+            <a href="" style="text-decoration: none;color: rgba(0, 0, 0, 0.733);font-weight:500;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 30px;">Being OG</a><br>
+            <h4>Contact</h4>
+            <p><strong>Adress: </strong>Banasree Dhaka 1000 G block Road no 1</p>
+            <p><strong>Phone: </strong>(+880)1897-578089</p>
+            <p><strong>Hours: </strong>10:00 - 18:00, Sat - Thus</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <a href=""><i class="fab fa-facebook-f" style="font-weight: 400;"></a>
+                    </i>
+                    <a href=""> <i class="fab fa-instagram" style="font-weight: 400;"></i></a>
+                    <a href=""> <i class="fab fa-twitter" style="font-weight: 400;"></i></a>
+                    <a href=""> <i class="fab fa-pinterest" style="font-weight: 400;"></i></a>
+                    <a href=""> <i class="fab fa-youtube" style="font-weight: 400;"></i></a>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="c">
+            <h4>About</h4>
+            <a href="">About Us</a>
+            <a href="">Delivery Informations</a>
+            <a href="">Privacy & Policy</a>
+            <a href="">Terms & Conditions</a>
+            <a href="">Contact Us</a>
+        </div>
+        <div class="c">
+            <h4>My Account</h4>
+            <a href="">Sign In</a>
+            <a href="">Delivery Informations</a>
+            <a href="">View Cart</a>
+            <a href="">My Wishlist</a>
+            <a href="">Track My Order</a>
+            <a href="">Help</a>
+        </div>
+        <div class="c in">
+            <h4>Install App</h4>
+            <p>From App Store or Goolge Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
+
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>© 2024, Being OG Created by Sohorab Mahmud Fahim.<a href="https://www.facebook.com/fahimlwebdeveloper" style="font-weight:600;">Hire Now.</a></p>
+        </div>
+
+    </footer>
+    <script>
+        function displayCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const cartItemsContainer = document.getElementById("cartItems");
+            const deliveryOptions = document.getElementById("deliveryOptions");
+
+            cartItemsContainer.innerHTML = "";
+
+            if (cartItems.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Your cart is empty. Please add products to your cart.</p>";
+                deliveryOptions.style.display = "none";
+                document.getElementById("checkout").style.display = "none";
+                document.getElementById("checkbox").style.display = "none";
+            } else {
+                deliveryOptions.style.display = "block";
+                document.getElementById("checkout").style.display = "block";
+                document.getElementById("checkbox").style.display = "block";
+                cartItems.forEach((item, index) => {
+                    const cartItemElement = document.createElement("div");
+                    cartItemElement.classList.add("cart-item");
+                    cartItemElement.innerHTML = `
+                        <div class="cart-item">
+                            <img src="${item.image}" alt="${item.name}">
+                            <div class="item-details">
+                                <h4>${item.name}</h4>
+                                <p>Size: ${item.size}</p>
+                                <p>Price: ${item.price.toFixed(2)} TK</p>
+                                <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                            </div>
+                        </div>
+                    `;
+                    cartItemsContainer.appendChild(cartItemElement);
+                });
+            }
+
+            calculateTotal();
+        }
+
+        function updateQuantity(index, newQuantity) {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart[index].quantity = parseInt(newQuantity);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCartItems();
+        }
+
+        function removeFromCart(index) {
+            const cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            displayCartItems();
+        }
+
+        function calculateTotal() {
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            const totalPriceElement = document.getElementById("totalPrice");
+            const productValueElement = document.getElementById("productValue");
+            const deliveryChargeElement = document.getElementById("deliveryCharge");
+            const insideDhakaFee = 0;
+            const outsideDhakaFee = 0;
+            const freeDeliveryThreshold = 0;
+
+            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+            productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
+
+            let deliveryFee = 0;
+
+            if (productValue < freeDeliveryThreshold) {
+                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+                deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
+            }
+
+            deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
+
+            const totalPrice = productValue + deliveryFee;
+            totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
+
+            const noteMsg = productValue >= freeDeliveryThreshold ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
+            document.getElementById("noteMessage").textContent = noteMsg;
+        }
+
+        function confirmOrder(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            const fullName = document.getElementById("fullName").value.trim();
+            const address = document.getElementById("address").value.trim();
+            const contactNumber = document.getElementById("contactNumber").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const reference = document.getElementById("reference").value.trim();
+            const notes = document.getElementById("notes").value.trim();
+            const paymentmethod = document.getElementById("Payment").value.trim();
+            const transitionid = document.getElementById("Transactionid").value.trim();
+            const transitionnumber = document.getElementById("PaymentNumber").value.trim();
+            const batch = document.getElementById("batch").value.trim();
+
+            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+            let totalPrice = productValue;
+            const freeDeliveryThreshold = 0;
+            let deliveryFee = 0;
+
+            if (productValue < freeDeliveryThreshold) {
+                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+                deliveryFee = insideDhakaSelected ? 60 : 80;
+                totalPrice += deliveryFee;
+            }
+
+            const inputs = [fullName, address, contactNumber, email, reference, notes];
+            const isEmpty = inputs.some(input => input === "");
+
+            if (isEmpty) {
+                alert("Please fill in all fields before confirming the order.");
+                return;
+            }
+
+            // Prepare the email content for admin
+            const cartItemsList = cartItems.map(item => `
+        - ${item.name} (Size: ${item.size}) - Quantity: ${item.quantity} - Price: ${item.price} TK
+    `).join("");
+
+            const adminEmailContent = `
+        <b>New Order Received</b>
+        <br/>
+        <b>Name:</b> ${fullName}
+        <br/>
+        <b>Address:</b> ${address}
+        <br/>
+        <b>Contact Number:</b> ${contactNumber}
+        <br/>
+        <b>Batch No:</b> ${batch}
+        <br/>
+        <b>Email:</b> ${email}
+        <br/>
+        <b>Payment Method:</b> ${paymentmethod}
+        <br/>
+        <b>Payment number:</b> ${transitionnumber}
+        <br/>
+        <b>transaction Id:</b> ${transitionid}
+        <br/>
+        <b>Reference:</b> ${reference}
+        <br/>
+        <b>Notes:</b> ${notes}
+        <br/>
+        <b>Cart Items:</b>
+        <br/>${cartItemsList}
+        <br/>
+        <b>Product Value:</b> BDT ${productValue.toFixed(2)}
+        <br/>
+        <b>Delivery Fee:</b> ${deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`}
+        <br/>
+        <b>Total Price:</b> BDT ${totalPrice.toFixed(2)}
+    `;
+
+    // Prepare the email content for customer
+    const customerEmailContent = `
+        <b>Order Confirmation</b>
+        <br/>
+        Thank you for your order, ${fullName}!
+        <br/><br/>
+        <b>Your order details are as follows:</b>
+        <br/>
+        <b>Address:</b> ${address}
+        <br/>
+        <b>Contact Number:</b> ${contactNumber}
+        <br/>
+        <b>Reference:</b> ${reference}
+        <br/>
+        <b>Notes:</b> ${notes}
+        <br/><br/>
+        <b>Cart Items:</b>
+        <br/>${cartItemsList}
+        <br/>
+        <b>Product Value:</b> BDT ${productValue.toFixed(2)}
+        <br/>
+        <b>Delivery Fee:</b> ${deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`}
+        <br/>
+        <b>Total Price:</b> BDT ${totalPrice.toFixed(2)}
+        <br/><br/>
+        We will process your order shortly.
+    `;
+
+    // Send email to admin
+    Email.send({
+        SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388", 
+        To: 'sohorabdue@gmail.com',
+        From: "sohorabdue@gmail.com", 
+        Subject: "New Order Received",
+        Body: adminEmailContent
+    }).then(() => {
+        // Send email to customer
+        return Email.send({
+            SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388", 
+            To: email, 
+            From: "sohorabdue@gmail.com",
+            Subject: "Order Confirmation",
+            Body: customerEmailContent
+        });
+    }).then(() => {
+        alert("Order confirmed! Emails sent successfully.");
+        localStorage.removeItem("cart"); 
+        displayCartItems();
+    }).catch(error => {
+        alert("Error sending email: " + error);
+    });
+}
+
+
+        displayCartItems();
+    </script>
+    <script src="https://smtpjs.com/v3/smtp.js">
+    </script>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
