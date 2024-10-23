@@ -346,29 +346,32 @@
     </section>
 
     <section id="cart" class="s-1">
-        <h2>Shopping Cart</h2>
-        <div class="cart-container">
-            <div class="cart-items" id="cartItems">
-                <!-- Cart items will be dynamically added here -->
-            </div>
-
-            <div id="checkbox" style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.171); margin: 20px 10px; border-radius: 10px;">
-                <h4 style="padding-top: 15px;">Delivery Options</h4>
-                <div class="delivery-options" id="deliveryOptions">
-                    <input type="radio" id="insideDhaka" name="deliveryOption" value="insideDhaka" onchange="calculateTotal()">
-                    <label for="insideDhaka">Inside Dhaka (<span id="insideDhakaFee">Free</span>)</label><br>
-                    <input type="radio" id="outsideDhaka" name="deliveryOption" value="outsideDhaka" onchange="calculateTotal()">
-                    <label for="outsideDhaka">Outside Dhaka (<span id="outsideDhakaFee">Free</span>)</label><br>
-                </div>
-                <div class="receipt" id="receipt">
-                    <p>Product Value: <span id="productValue">BDT 0.00</span></p>
-                    <p>Delivery Charge: <span id="deliveryCharge">BDT 0.00</span></p>
-                    <p>Total: <span id="totalPrice">BDT 0.00</span></p>
-                </div>
-                <p id="noteMessage"></p>
-            </div>
+    <h2>Shopping Cart</h2>
+    <div class="cart-container">
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be dynamically added here -->
         </div>
-    </section>
+
+        <div id="checkbox" style="padding: 10px; border: 1px solid rgba(0, 0, 0, 0.171); margin: 20px 10px; border-radius: 10px;">
+            <h4 style="padding-top: 15px;">Delivery Options</h4>
+            <div class="delivery-options" id="deliveryOptions">
+                <input type="radio" id="insideDhaka" name="deliveryOption" value="insideDhaka" onchange="calculateTotal()">
+                <label for="insideDhaka">Inside Dhaka (<span id="insideDhakaFee">60</span>)</label><br>
+                <input type="radio" id="outsideDhaka" name="deliveryOption" value="outsideDhaka" onchange="calculateTotal()">
+                <label for="outsideDhaka">Outside Dhaka (<span id="outsideDhakaFee">110</span>)</label><br>
+                <input type="radio" id="bafsdCampus" name="deliveryOption" value="bafsdCampus" onchange="calculateTotal()">
+                <label for="bafsdCampus">BAFSD Campus (Free Delivery)</label><br>
+            </div>
+            <div class="receipt" id="receipt">
+                <p>Product Value: <span id="productValue">BDT 0.00</span></p>
+                <p>Delivery Charge: <span id="deliveryCharge">BDT 0.00</span></p>
+                <p>Total: <span id="totalPrice">BDT 0.00</span></p>
+            </div>
+            <p id="noteMessage"></p>
+        </div>
+    </div>
+</section>
+
 
     <section id="checkout" class="s-1 section-m1 checkout-form">
         <div id="checkbox" class="checkout-header">
@@ -518,33 +521,41 @@
             displayCartItems();
         }
 
-        function calculateTotal() {
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            const totalPriceElement = document.getElementById("totalPrice");
-            const productValueElement = document.getElementById("productValue");
-            const deliveryChargeElement = document.getElementById("deliveryCharge");
-            const insideDhakaFee = 0;
-            const outsideDhakaFee = 0;
-            const freeDeliveryThreshold = 0;
+function calculateTotal() {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalPriceElement = document.getElementById("totalPrice");
+    const productValueElement = document.getElementById("productValue");
+    const deliveryChargeElement = document.getElementById("deliveryCharge");
+    const insideDhakaFee = 60;
+    const outsideDhakaFee = 110;
+    const freeDeliveryThreshold = 2000;
 
-            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-            productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
+    let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
 
-            let deliveryFee = 0;
+    let deliveryFee = 0;
 
-            if (productValue < freeDeliveryThreshold) {
-                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-                deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
-            }
+    // Check the selected delivery option
+    const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+    const outsideDhakaSelected = document.getElementById("outsideDhaka").checked;
+    const bafsdCampusSelected = document.getElementById("bafsdCampus").checked;
 
-            deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
-
-            const totalPrice = productValue + deliveryFee;
-            totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
-
-            const noteMsg = productValue >= freeDeliveryThreshold ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
-            document.getElementById("noteMessage").textContent = noteMsg;
+    if (productValue < freeDeliveryThreshold) {
+        if (bafsdCampusSelected) {
+            deliveryFee = 0; // Free delivery for BAFSD Campus
+        } else {
+            deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
         }
+    }
+
+    deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
+
+    const totalPrice = productValue + deliveryFee;
+    totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
+
+    const noteMsg = productValue >= freeDeliveryThreshold || bafsdCampusSelected ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
+    document.getElementById("noteMessage").textContent = noteMsg;
+}
 
         function confirmOrder(event) {
             event.preventDefault(); // Prevent the default form submission
@@ -563,7 +574,7 @@
             const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
             let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
             let totalPrice = productValue;
-            const freeDeliveryThreshold = 0;
+            const freeDeliveryThreshold = 2000;
             let deliveryFee = 0;
 
             if (productValue < freeDeliveryThreshold) {
