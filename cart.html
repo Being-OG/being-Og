@@ -468,6 +468,7 @@
         </div>
 
     </footer>
+
 <script>
 function displayCartItems() {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
@@ -528,17 +529,31 @@ function calculateTotal() {
     const productValueElement = document.getElementById("productValue");
     const deliveryChargeElement = document.getElementById("deliveryCharge");
     const insideDhakaFee = 60;
-    const outsideDhakaFee = 80;
+    const outsideDhakaFee = 110;
     const freeDeliveryThreshold = 2000; // Adjust threshold as needed
 
     let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
 
     let deliveryFee = 0;
+    const selectedDeliveryOption = document.querySelector('input[name="deliveryOption"]:checked');
 
     if (productValue < freeDeliveryThreshold) {
-        const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-        deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
+        if (selectedDeliveryOption) {
+            switch (selectedDeliveryOption.value) {
+                case "insideDhaka":
+                    deliveryFee = insideDhakaFee;
+                    break;
+                case "outsideDhaka":
+                    deliveryFee = outsideDhakaFee;
+                    break;
+                case "bafsdCampus":
+                    deliveryFee = 0; // Free delivery
+                    break;
+                default:
+                    deliveryFee = 0; // Default to free if no valid option is selected
+            }
+        }
     }
 
     deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
@@ -569,10 +584,20 @@ function confirmOrder(event) {
     let totalPrice = productValue;
     const freeDeliveryThreshold = 2000; // Match this with calculateTotal
     let deliveryFee = 0;
+    const selectedDeliveryOption = document.querySelector('input[name="deliveryOption"]:checked');
 
-    if (productValue < freeDeliveryThreshold) {
-        const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-        deliveryFee = insideDhakaSelected ? 60 : 80;
+    if (productValue < freeDeliveryThreshold && selectedDeliveryOption) {
+        switch (selectedDeliveryOption.value) {
+            case "insideDhaka":
+                deliveryFee = 60;
+                break;
+            case "outsideDhaka":
+                deliveryFee = 110;
+                break;
+            case "bafsdCampus":
+                deliveryFee = 0; // Free delivery
+                break;
+        }
         totalPrice += deliveryFee;
     }
 
@@ -595,6 +620,8 @@ function confirmOrder(event) {
     const cartItemsList = cartItems.map(item => `
         - ${item.name} (Size: ${item.size}) - Quantity: ${item.quantity} - Price: ${item.price} TK
     `).join("");
+
+    const deliveryOptionText = selectedDeliveryOption ? selectedDeliveryOption.nextElementSibling.textContent : "Not selected";
 
     const adminEmailContent = `
         <b>New Order Received</b>
@@ -624,6 +651,8 @@ function confirmOrder(event) {
         <br/>
         <b>Product Value:</b> BDT ${productValue.toFixed(2)}
         <br/>
+        <b>Delivery Option:</b> ${deliveryOptionText}
+        <br/>
         <b>Delivery Fee:</b> ${deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`}
         <br/>
         <b>Total Price:</b> BDT ${totalPrice.toFixed(2)}
@@ -649,6 +678,8 @@ function confirmOrder(event) {
         <br/>${cartItemsList}
         <br/>
         <b>Product Value:</b> BDT ${productValue.toFixed(2)}
+        <br/>
+        <b>Delivery Option:</b> ${deliveryOptionText}
         <br/>
         <b>Delivery Fee:</b> ${deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`}
         <br/>
