@@ -49,24 +49,24 @@
     <section id="pdetails" class="s-1">
 
         <div class="spi">
-            <img src="img/tote3.png" width="100%" id="MainImg" alt="">
+            <img src="img/products/asset 01 folder 01.png" width="100%" id="MainImg" alt="">
             <div class="sig">
                 <div class="sa">
-                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+                    <img src="img/products/asset 01 folder 01.png" width="100%" class="small-img" alt="">
 
                 </div>
                 <div class="sa">
-                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
-
-                </div>
-
-                <div class="sa">
-                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+                    <img src="img/products/asset 02 folder 01.png" width="100%" class="small-img" alt="">
 
                 </div>
 
                 <div class="sa">
-                    <img src="img/tote3.png" width="100%" class="small-img" alt="">
+                    <img src="img/products/asset 03 folder 01.png" width="100%" class="small-img" alt="">
+
+                </div>
+
+                <div class="sa">
+                    <img src="img/products/asset 01 folder 01.png" width="100%" class="small-img" alt="">
 
                 </div>
 
@@ -79,10 +79,21 @@
             <h6> Home / Premium TOTE Bags</h6>
             <h4>Premium TOTE Bags</h4>
             <h2>BDT 499</h2>
-            <select id="sizeSelect">
+            <select id="colorSelect">
 
-        <option>Black</option>
-        <option>White</option>
+                <option value="blue">Sky Blue</option>
+                <option value="green">Brown</option>
+                <option value="black">Black</option>
+            </select>
+            
+      <select id="sizeSelect">
+
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
+        <option>XL</option>
+        <option>2XL</option>
+        <option>3XL</option>
        
       </select>
             <input type="number" id="quantity" value="1">
@@ -93,7 +104,7 @@
             <input type="hidden" id="productId" value="000001">
             <input type="hidden" id="productName" value="Premium TOTE Bags">
             <input type="hidden" id="productPrice" value="499">
-            <input type="hidden" id="productImage" value="img/tote3.png">
+            <input type="hidden" id="productImage" value="img/products/asset 01 folder 01.png">
 
 
 
@@ -118,7 +129,7 @@
         <p>Summer Collections With Deeshi Swag Modern Designs</p>
         <div class="p-con">
             <div class="pro" onclick="window.location.href='s3product.html';">
-                <img src="img/tote4.png" alt="">
+                <img src="img/products/asset 04 folder 02.png" alt="">
                 <div class="description">
                     <span>Deeshi Swag a</span>
                     <h5>Premium TOTE Bags </h5>
@@ -134,7 +145,7 @@
                 <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro" onclick="window.location.href='s4product.html';">
-                <img src="img/tote5.png" alt="">
+                <img src="img/products/asset 05 folder 03.png" alt="">
                 <div class="description">
                     <span>Deeshi Swag b </span>
                     <h5>Premium TOTE Bags </h5>
@@ -150,7 +161,7 @@
                 <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro" onclick="window.location.href='s5product.html';">
-                <img src="img/tote6.png" alt="">
+                <img src="img/products/asset 06 folder 04.png" alt="">
                 <div class="description">
                     <span>Deeshi Swag c </span>
                     <h5>Premium TOTE Bags</h5>
@@ -166,7 +177,7 @@
                 <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
             </div>
             <div class="pro" onclick="window.location.href='s6product.html';">
-                <img src="img/tote7.png" alt="">
+                <img src="img/products/asset 07 folder 05.png" alt="">
                 <div class="description">
                     <span>Deeshi Swag </span>
                     <h5>Premium TOTE Bags</h5>
@@ -273,15 +284,11 @@
         }
     </script>
     <script>
-        // Function to perform product search
         function searchProducts() {
-            // Get the value entered in the search input
-            const searchText = document.getElementById("product-search").value.toLowerCase();
 
-            // Get all product descriptions
+            const searchText = document.getElementById("product-search").value.toLowerCase();
             const descriptions = document.querySelectorAll(".description");
 
-            // Loop through each product and check if the search text is present in the product name
             descriptions.forEach((description) => {
                 const productName = description.querySelector("h5").innerText.toLowerCase();
                 const product = description.closest(".pro");
@@ -295,40 +302,36 @@
     </script>
 
     <script>
-        function addToCart() {
-            const productName = document.getElementById("productName").value;
-            const productPrice = parseFloat(document.getElementById("productPrice").value);
-            const productImage = document.getElementById("productImage").value;
-            const selectedSize = document.getElementById("sizeSelect").value;
-            const productQuantity = document.getElementById("quantity").value;
-            const productId = document.getElementById("productId").value;
+       function addToCart() {
+    const productName = document.getElementById("productName").value;
+    const productPrice = parseFloat(document.getElementById("productPrice").value);
+    const productImage = document.getElementById("productImage").value;
+    const selectedSize = document.getElementById("sizeSelect").value;
+    const selectedColor = document.getElementById("colorSelect").value; 
+    const productQuantity = document.getElementById("quantity").value;
+    const productId = document.getElementById("productId").value;
 
-            const cartItem = {
-                id: productId,
-                name: productName,
-                price: productPrice,
-                image: productImage,
-                size: selectedSize,
-                quantity: productQuantity,
-            };
+    const cartItem = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        size: selectedSize,
+        color: selectedColor,
+        quantity: parseInt(productQuantity, 10) || 1
+    };
 
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProductIndex = cart.findIndex(item => item.name === productName && item.color === selectedColor); 
 
-            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    if (existingProductIndex !== -1) {
+        cart[existingProductIndex].quantity += cartItem.quantity;
+    } else {
+        cart.push(cartItem);
+    }
 
-
-            const existingProductIndex = cart.findIndex((item) => item.name === productName);
-
-            if (existingProductIndex !== -1) {
-
-                cart[existingProductIndex].quantity += 1;
-            } else {
-
-                cart.push(cartItem);
-            }
-
-
-            localStorage.setItem("cart", JSON.stringify(cart));
-        }
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
     </script>
 
 
