@@ -468,134 +468,135 @@
         </div>
 
     </footer>
-  <script>
-        function displayCartItems() {
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            const cartItemsContainer = document.getElementById("cartItems");
-            const deliveryOptions = document.getElementById("deliveryOptions");
+<script>
+function displayCartItems() {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const cartItemsContainer = document.getElementById("cartItems");
+    const deliveryOptions = document.getElementById("deliveryOptions");
 
-            cartItemsContainer.innerHTML = "";
+    cartItemsContainer.innerHTML = "";
 
-            if (cartItems.length === 0) {
-                cartItemsContainer.innerHTML = "<p>Your cart is empty. Please add products to your cart.</p>";
-                deliveryOptions.style.display = "none";
-                document.getElementById("checkout").style.display = "none";
-                document.getElementById("checkbox").style.display = "none";
-            } else {
-                deliveryOptions.style.display = "block";
-                document.getElementById("checkout").style.display = "block";
-                document.getElementById("checkbox").style.display = "block";
-                cartItems.forEach((item, index) => {
-                    const cartItemElement = document.createElement("div");
-                    cartItemElement.classList.add("cart-item");
-                    cartItemElement.innerHTML = `
-                        <div class="cart-item">
-                            <img src="${item.image}" alt="${item.name}">
-                            <div class="item-details">
-                                <h4>${item.name}</h4>
-                                <p>Size: ${item.size}</p>
-                                <p>Price: ${item.price.toFixed(2)} TK</p>
-                                <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
-                                <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
-                            </div>
-                        </div>
-                    `;
-                    cartItemsContainer.appendChild(cartItemElement);
-                });
-            }
+    if (cartItems.length === 0) {
+        cartItemsContainer.innerHTML = "<p>Your cart is empty. Please add products to your cart.</p>";
+        deliveryOptions.style.display = "none";
+        document.getElementById("checkout").style.display = "none";
+        document.getElementById("checkbox").style.display = "none";
+    } else {
+        deliveryOptions.style.display = "block";
+        document.getElementById("checkout").style.display = "block";
+        document.getElementById("checkbox").style.display = "block";
 
-            calculateTotal();
-        }
+        cartItems.forEach((item, index) => {
+            const cartItemElement = document.createElement("div");
+            cartItemElement.classList.add("cart-item");
+            cartItemElement.innerHTML = `
+                <div class="cart-item">
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="item-details">
+                        <h4>${item.name}</h4>
+                        <p>Size: ${item.size}</p>
+                        <p>Price: ${item.price.toFixed(2)} TK</p>
+                        <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
+                    </div>
+                </div>
+            `;
+            cartItemsContainer.appendChild(cartItemElement);
+        });
+    }
 
-        function updateQuantity(index, newQuantity) {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart[index].quantity = parseInt(newQuantity);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            displayCartItems();
-        }
+    calculateTotal();
+}
 
-        function removeFromCart(index) {
-            const cart = JSON.parse(localStorage.getItem("cart")) || [];
-            cart.splice(index, 1);
-            localStorage.setItem("cart", JSON.stringify(cart));
-            displayCartItems();
-        }
+function updateQuantity(index, newQuantity) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart[index].quantity = parseInt(newQuantity);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCartItems();
+}
 
-        function calculateTotal() {
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            const totalPriceElement = document.getElementById("totalPrice");
-            const productValueElement = document.getElementById("productValue");
-            const deliveryChargeElement = document.getElementById("deliveryCharge");
-            const insideDhakaFee = 0;
-            const outsideDhakaFee = 0;
-            const freeDeliveryThreshold = 0;
+function removeFromCart(index) {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    displayCartItems();
+}
 
-            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-            productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
+function calculateTotal() {
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalPriceElement = document.getElementById("totalPrice");
+    const productValueElement = document.getElementById("productValue");
+    const deliveryChargeElement = document.getElementById("deliveryCharge");
+    const insideDhakaFee = 60;
+    const outsideDhakaFee = 80;
+    const freeDeliveryThreshold = 2000; // Adjust threshold as needed
 
-            let deliveryFee = 0;
+    let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    productValueElement.textContent = `BDT ${productValue.toFixed(2)}`;
 
-            if (productValue < freeDeliveryThreshold) {
-                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-                deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
-            }
+    let deliveryFee = 0;
 
-            deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
+    if (productValue < freeDeliveryThreshold) {
+        const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+        deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
+    }
 
-            const totalPrice = productValue + deliveryFee;
-            totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
+    deliveryChargeElement.textContent = deliveryFee === 0 ? "Free Delivery" : `BDT ${deliveryFee.toFixed(2)}`;
 
-            const noteMsg = productValue >= freeDeliveryThreshold ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
-            document.getElementById("noteMessage").textContent = noteMsg;
-        }
+    const totalPrice = productValue + deliveryFee;
+    totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
 
-        function confirmOrder(event) {
-            event.preventDefault();
+    const noteMsg = productValue >= freeDeliveryThreshold ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
+    document.getElementById("noteMessage").textContent = noteMsg;
+}
 
-            const fullName = document.getElementById("fullName").value.trim();
-            const address = document.getElementById("address").value.trim();
-            const contactNumber = document.getElementById("contactNumber").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const reference = document.getElementById("reference").value.trim();
-            const notes = document.getElementById("notes").value.trim();
-            const paymentmethod = document.getElementById("Payment").value.trim();
-            const transitionid = document.getElementById("Transactionid").value.trim();
-            const transitionnumber = document.getElementById("PaymentNumber").value.trim();
-            const batch = document.getElementById("batch").value.trim();
+function confirmOrder(event) {
+    event.preventDefault();
 
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-            let totalPrice = productValue;
-            const freeDeliveryThreshold = 0;
-            let deliveryFee = 0;
+    const fullName = document.getElementById("fullName").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const contactNumber = document.getElementById("contactNumber").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const reference = document.getElementById("reference").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+    const paymentmethod = document.getElementById("Payment").value.trim();
+    const transitionid = document.getElementById("Transactionid").value.trim();
+    const transitionnumber = document.getElementById("PaymentNumber").value.trim();
+    const batch = document.getElementById("batch").value.trim();
 
-            if (productValue < freeDeliveryThreshold) {
-                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-                deliveryFee = insideDhakaSelected ? 60 : 80;
-                totalPrice += deliveryFee;
-            }
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    let totalPrice = productValue;
+    const freeDeliveryThreshold = 2000; // Match this with calculateTotal
+    let deliveryFee = 0;
 
-            const inputs = [fullName, address, contactNumber, email, reference, notes];
-            const isEmpty = inputs.some(input => input === "");
+    if (productValue < freeDeliveryThreshold) {
+        const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+        deliveryFee = insideDhakaSelected ? 60 : 80;
+        totalPrice += deliveryFee;
+    }
 
-            if (isEmpty) {
-                alert("Please fill in all fields before confirming the order.");
-                return;
-            }
+    const inputs = [fullName, address, contactNumber, email, reference, notes];
+    const isEmpty = inputs.some(input => input === "");
 
-            const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    if (isEmpty) {
+        alert("Please fill in all fields before confirming the order.");
+        return;
+    }
 
-            if (!isValidEmail(email)) {
-                alert("Please provide a valid email address.");
-                return;
-            }
+    const isValidEmail = email => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-            // Prepare the email content for admin
-            const cartItemsList = cartItems.map(item => `
+    if (!isValidEmail(email)) {
+        alert("Please provide a valid email address.");
+        return;
+    }
+
+    // Prepare the email content for admin
+    const cartItemsList = cartItems.map(item => `
         - ${item.name} (Size: ${item.size}) - Quantity: ${item.quantity} - Price: ${item.price} TK
     `).join("");
 
-            const adminEmailContent = `
+    const adminEmailContent = `
         <b>New Order Received</b>
         <br/>
         <b>Name:</b> ${fullName}
@@ -610,7 +611,7 @@
         <br/>
         <b>Payment Method:</b> ${paymentmethod}
         <br/>
-        <b>Payment number:</b> ${transitionnumber}
+        <b>Payment Number:</b> ${transitionnumber}
         <br/>
         <b>Transaction Id:</b> ${transitionid}
         <br/>
@@ -658,14 +659,13 @@
 
     // Send email to admin
     Email.send({
-        SecureToken: "/1de67f01-c8fc-4d2e-a08c-ca00c7bb7388", 
+        SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
         To: 'sohorabdue@gmail.com',
-        From: "sohorabdue@gmail.com", 
+        From: "sohorabdue@gmail.com",
         Subject: "New Order Received",
         Body: adminEmailContent
     }).then(() => {
         alert("Admin email sent successfully.");
-        // Send email to customer after admin email is confirmed as sent
         return sendCustomerEmail();
     }).catch(error => {
         alert("Error sending admin email: " + error);
@@ -673,7 +673,7 @@
 
     function sendCustomerEmail() {
         return Email.send({
-            SecureToken: "/1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
+            SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
             To: email,
             From: "sohorabdue@gmail.com",
             Subject: "Order Confirmation",
@@ -688,8 +688,9 @@
     }
 }
 
-        displayCartItems();
-    </script>
+displayCartItems();
+</script>
+
     <script src="https://smtpjs.com/v3/smtp.js">
     </script>
 
