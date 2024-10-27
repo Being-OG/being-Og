@@ -521,7 +521,7 @@
             displayCartItems();
         }
 
-function calculateTotal() {
+ffunction calculateTotal() {
     const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
     const totalPriceElement = document.getElementById("totalPrice");
     const productValueElement = document.getElementById("productValue");
@@ -543,8 +543,10 @@ function calculateTotal() {
     if (productValue < freeDeliveryThreshold) {
         if (bafsdCampusSelected) {
             deliveryFee = 0; // Free delivery for BAFSD Campus
-        } else {
-            deliveryFee = insideDhakaSelected ? insideDhakaFee : outsideDhakaFee;
+        } else if (insideDhakaSelected) {
+            deliveryFee = insideDhakaFee; // Delivery fee for inside Dhaka
+        } else if (outsideDhakaSelected) {
+            deliveryFee = outsideDhakaFee; // Delivery fee for outside Dhaka
         }
     }
 
@@ -553,7 +555,10 @@ function calculateTotal() {
     const totalPrice = productValue + deliveryFee;
     totalPriceElement.textContent = `BDT ${totalPrice.toFixed(2)}`;
 
-    const noteMsg = productValue >= freeDeliveryThreshold || bafsdCampusSelected ? "Congratulations! You qualify for free delivery." : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
+    const noteMsg = productValue >= freeDeliveryThreshold || bafsdCampusSelected
+        ? "Congratulations! You qualify for free delivery."
+        : `Buy ${(freeDeliveryThreshold - productValue).toFixed(2)} TK more for free delivery.`;
+    
     document.getElementById("noteMessage").textContent = noteMsg;
 }
 
