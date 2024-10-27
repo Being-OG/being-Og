@@ -491,15 +491,14 @@ function displayCartItems() {
             const cartItemElement = document.createElement("div");
             cartItemElement.classList.add("cart-item");
             cartItemElement.innerHTML = `
-                <div class="cart-item">
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="item-details">
-                        <h4>${item.name}</h4>
-                        <p>Size: ${item.size}</p>
-                        <p>Price: ${item.price.toFixed(2)} TK</p>
-                        <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
-                        <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
-                    </div>
+                <img src="${item.image}" alt="${item.name}">
+                <div class="item-details">
+                    <h4>${item.name}</h4>
+                    <p>Size: ${item.size}</p>
+                    <p>Color: ${item.color}</p>
+                    <p>Price: ${item.price.toFixed(2)} TK</p>
+                    <input type="number" min="1" value="${item.quantity}" onchange="updateQuantity(${index}, this.value)">
+                    <button class="remove-btn" onclick="removeFromCart(${index})">Remove</button>
                 </div>
             `;
             cartItemsContainer.appendChild(cartItemElement);
@@ -690,7 +689,7 @@ function confirmOrder(event) {
 
     // Send email to admin
     Email.send({
-        SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
+        SecureToken: "/1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
         To: 'sohorabdue@gmail.com',
         From: "sohorabdue@gmail.com",
         Subject: "New Order Received",
@@ -704,7 +703,7 @@ function confirmOrder(event) {
 
     function sendCustomerEmail() {
         return Email.send({
-            SecureToken: "1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
+            SecureToken: "/1de67f01-c8fc-4d2e-a08c-ca00c7bb7388",
             To: email,
             From: "sohorabdue@gmail.com",
             Subject: "Order Confirmation",
