@@ -1,323 +1,343 @@
 <!DOCTYPE html>
 <html lang="en">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Deeshi Swag</title>
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deeshi Swag</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
+    <link rel="icon" type="image/png" sizes="32x32" href="img/logo-icon.jpg">
+    <link rel="stylesheet" href="style.css">
+</head>
 
-        <link rel="stylesheet" href="style.css">
-    </head>
+<body>
 
-    <body>
+    <section id="header">
+        <a href="" style="text-decoration: none;color: rgba(0, 0, 0, 0.733);font-weight:500;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 30px;">Deeshi Swag</a>
+        <div>
 
-        <section id="header">
-            <a href=""> <img src="img/Im.png" title="Deeshi Swag"></a>
-<div >
-            
             <ul id="navbar">
-              <li><a href="index.html">Home</a></li>
+                <li><a href="index.html">Home</a></li>
                 <li> <a class="active" href="shop.html">Shop</a></li>
-               
-               <li><a href="about.html">About</a></li>
+
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
-                 <li><a href="cart.html"><i class="far fa-shopping-bag" style="font-weight: 550;"> Cart</i></a></li>
-                 
-              
-               
+                <li><a href="cart.html"><i class="far fa-shopping-bag" style="font-weight: 550;"> Cart</i></a></li>
 
 
 
-              <a href="#" id="close"><i class="far fa-times"></i></a>
-             
-             
-                </div>  
-               <div id="mobile">
-               <i id="bar" class="fas fa-outdent"></i>
-               
-               </div> 
-               <div id="search-bar">
-                <input type="text" id="product-search" placeholder="Search products...">
-                <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
-            </div>
-         </section>
+
+
+
+                <a href="#" id="close"><i class="far fa-times"></i></a>
+
+
+        </div>
+        <div id="mobile">
+            <i id="bar" class="fas fa-outdent"></i>
+
+        </div>
+
+        <div id="search-bar">
+            <input type="text" id="product-search" placeholder="Search products...">
+            <button onclick="searchProducts()"><i class="fas fa-search"></i></button>
+        </div>
+    </section>
 
 
     <section id="pdetails" class="s-1">
-      
-    <div class="spi">
-        <img src="img/products/f4.jpg" width="100%" id="MainImg" alt="">
-    <div class="sig">
-  <div class="sa">
-    <img src="img/products/f4.jpg" width="100%" class="small-img" alt="">
 
-  </div>
-  <div class="sa">
-    <img src="img/products/f5.jpg" width="100%" class="small-img" alt="">
+        <div class="spi">
+            <img src="img/products/asset 01 folder 01.png" width="100%" id="MainImg" alt="">
+            <div class="sig">
+                <div class="sa">
+                    <img src="img/products/asset 01 folder 01.png" width="100%" class="small-img" alt="">
 
-  </div>
+                </div>
+                <div class="sa">
+                    <img src="img/products/asset 02 folder 01.png" width="100%" class="small-img" alt="">
 
-  <div class="sa">
-    <img src="img/products/f6.jpg" width="100%" class="small-img" alt="">
+                </div>
 
-  </div>
+                <div class="sa">
+                    <img src="img/products/asset 03 folder 01.png" width="100%" class="small-img" alt="">
 
-  <div class="sa">
-    <img src="img/products/f7.jpg" width="100%" class="small-img" alt="">
+                </div>
 
-  </div>
+                <div class="sa">
+                    <img src="img/products/asset 01 folder 01.png" width="100%" class="small-img" alt="">
+
+                </div>
 
 
-    </div>
-    
-    
-    </div>
-    <div class="spd">
-      <h6> Home / T-Shirts</h6>
-      <h4>Messi & Ronaldo Fasionable T-Shirts 1</h4>
-      <h2>$ 70.00<span style="padding-left: 10px;"><del>$ 100</del></span></h2>
-      <select>
-        <option>Select Size</option>
+            </div>
+
+
+        </div>
+        <div class="spd">
+            <h6> Home / Premium TOTE Bags</h6>
+            <h4>Premium TOTE Bags</h4>
+            <h2>BDT 499</h2>
+            <select id="colorSelect">
+                <option value="red">Red</option>
+                <option value="blue">Blue</option>
+                <option value="green">Green</option>
+                <option value="yellow">Yellow</option>
+                <option value="black">Black</option>
+            </select>
+            
+      <select id="sizeSelect">
+
+        <option>S</option>
+        <option>M</option>
+        <option>L</option>
         <option>XL</option>
-        <option>XLL</option>
-        <option>Small</option>
-        <option>Large</option>
+        <option>2XL</option>
+        <option>3XL</option>
+       
       </select>
-      <input type="number" id="quantity" value="1">
-      
-      <button id="addToCartBtn" onclick="addToCart()">Add To Cart</button>
-      <p>#000021</p>
-      <input type="hidden" id="productId" value="000021">
-      <input type="hidden" id="productName" value="Messi & Ronaldo Fasionable T-Shirts 1">
-      <input type="hidden" id="productPrice" value="70">
-      <input type="hidden" id="productImage" value="img/products/f4.jpg">
-      
-      
-  
-      <h4>Product Details</h4>
-      <span> An aimless person is just like a ship without any direction. You cannot move forward without having an aim or goal in your life. Everyone has their own aim. Everyone’s aim is different from others. Having a potential goal in life helps you to define your existence. Not only that, but a goal or several goals also help one in understanding their career goals and life goals.</span>
-    </div>
-    </section>   
+            <input type="number" id="quantity" value="1">
+
+            <button id="addToCartBtn" onclick="addToCart(); alert('Product added successfully!')">Add To Cart </button>
+
+            <p>#000001</p>
+            <input type="hidden" id="productId" value="000001">
+            <input type="hidden" id="productName" value="Premium TOTE Bags">
+            <input type="hidden" id="productPrice" value="499">
+            <input type="hidden" id="productImage" value="img/products/asset 01 folder 01.png">
+
+
+
+            <h4>Product Details</h4>
+            <span> <b>Features:</b><br>
+• Stylish Designs: Discover a curated selection of stylish, unique, and adorable designs exclusively chosen for you.<br>
+• Measurement: Height. 16 inch, Width: 14 inch, Strap: 24 inch round (12 inch height).<br>
+• Fabric: High-quality export quality cotton canvas thick fabric.<br>
+• Washable and Dry Friendly.<br>
+• Best Quality Smooth Zipper.<br><br>
+<b>Print Technology:</b><br>
+• DTF Print: Direct To Fabric printing technique ensures vibrant, detailed, and durable designs on your tote bags.<br><br>
+<b>Why Choose Our Bags:</b><br>
+• Premium Quality: Crafted with precision using high-grade materials.<br>
+• Customization: Make it truly yours personalize your tote with unique prints<br>
+• Durability: Sturdy and reliable, our bags are built to withstand your daily adventures.<br>
+• Wash with Confidence: No need to worry our prints stay intact, ensuring durability style.</span>
+        </div>
+    </section>
     <section id="pd-1" class="s-1">
         <h2>New Arrivals</h2>
         <p>Summer Collections With Deeshi Swag Modern Designs</p>
         <div class="p-con">
-       <div class="pro">
-        <img src="img/products/n1.jpg" alt="">
-        <div class="description">
-           <span>Deeshi Swag a</span>
-           <h5>T-Shirt Messi Ronaldo a </h5>
-           <div class="star">
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-               <i class="fas fa-star"></i>
-           </div>
-           <h4>$70</h4>
+            <div class="pro" onclick="window.location.href='s3product.html';">
+                <img src="img/products/asset 04 folder 02.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag a</span>
+                    <h5>Premium TOTE Bags </h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s4product.html';">
+                <img src="img/products/asset 05 folder 03.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag b </span>
+                    <h5>Premium TOTE Bags </h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s5product.html';">
+                <img src="img/products/asset 06 folder 04.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag c </span>
+                    <h5>Premium TOTE Bags</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+            <div class="pro" onclick="window.location.href='s6product.html';">
+                <img src="img/products/asset 07 folder 05.png" alt="">
+                <div class="description">
+                    <span>Deeshi Swag </span>
+                    <h5>Premium TOTE Bags</h5>
+                    <div class="star">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h4>BDT 499</h4>
+                </div>
+                <a href="#" id="addToCartBtn"><i class="fal fa-shopping-cart cart"></i></a>
+            </div>
+
+
         </div>
-        <a href="#" ><i class="fal fa-shopping-cart cart"></i></a>
-       </div>
-       <div class="pro">
-           <img src="img/products/n2.jpg" alt="">
-           <div class="description">
-              <span>Deeshi Swag b </span>
-              <h5>T-Shirt Messi Ronaldo b </h5>
-              <div class="star">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-              </div>
-              <h4>$70</h4>
-           </div>
-           <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-          </div>
-          <div class="pro">
-           <img src="img/products/n3.jpg" alt="">
-           <div class="description">
-              <span>Deeshi Swag c </span>
-              <h5>T-Shirt Messi Ronaldo c</h5>
-              <div class="star">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-              </div>
-              <h4>$70</h4>
-           </div>
-           <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
-          </div>
-          <div class="pro">
-           <img src="img/products/n4.jpg" alt="">
-           <div class="description">
-              <span>Deeshi Swag d  </span>
-              <h5>T-Shirt Messi Ronaldo d</h5>
-              <div class="star">
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-                  <i class="fas fa-star"></i>
-              </div>
-              <h4>$70</h4>
-           </div>
-           <a href="cart.html"><i class="fal fa-shopping-cart cart"></i></a>
-          </div>
-          
-          
+    </section>
+
+
+    <section id="newsletter" class="s-1 section-m1">
+        <div class="nt">
+            <h4>Sign Up For News Letters</h4><br>
+            <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
         </div>
-       </section>
+        <div class="form">
+            <input type="email" id="email" placeholder="Email Adress" required>
+            <button class="bt">  Sign Up  </button>
+        </div>
 
+    </section>
 
-<section id="newsletter" class="s-1 section-m1">
-<div class="nt">
- <h4>Sign Up For News Letters</h4><br>
- <p>Get E-mail updates about our latest shop and <span>special offers.</span></p>
-</div>
-<div class="form">
- <input type="email" id="email" placeholder="Email Adress" required>
- <button class="bt">Sign Up</button>
-</div>
-
-</section>
-
-<footer class="s-1">
-<div class="c">
-<img src="img/Im.png" alt=""><br>
-<h4>Contact</h4>
-<p><strong>Adress: </strong>Banasree Dhaka 1000 C block Road no 4</p>
-<p><strong>Phone: </strong>(+880)19xxxxxxxx</p>
-<p><strong>Hours: </strong>10:00 - 18:00, Sat - Fri</p>
-<div class="follow">
- <h4>Follow us</h4>
- <div class="icon">
-     <i class="fab fa-facebook-f" style="font-weight: 400;"></i>
-     <i class="fab fa-instagram" style="font-weight: 400;"></i>
-     <i class="fab fa-twitter" style="font-weight: 400;"></i>
-     <i class="fab fa-pinterest" style="font-weight: 400;"></i>
-     <i class="fab fa-youtube" style="font-weight: 400;"></i>
- </div>
-</div>
+    <footer class="s-1">
+        <div class="c">
+            <a href="" style="text-decoration: none;color: rgba(0, 0, 0, 0.733);font-weight:500;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;font-size: 30px;">Deeshi Swag</a><br>
+            <h4>Contact</h4>
+            <p><strong>Adress: </strong>Banasree Dhaka 1000 C block Road no 4</p>
+            <p><strong>Phone: </strong>(+880)19xxxxxxxx</p>
+            <p><strong>Hours: </strong>10:00 - 18:00, Sat - Fri</p>
+            <div class="follow">
+                <h4>Follow us</h4>
+                <div class="icon">
+                    <i class="fab fa-facebook-f" style="font-weight: 400;"></i>
+                    <i class="fab fa-instagram" style="font-weight: 400;"></i>
+                    <i class="fab fa-twitter" style="font-weight: 400;"></i>
+                    <i class="fab fa-pinterest" style="font-weight: 400;"></i>
+                    <i class="fab fa-youtube" style="font-weight: 400;"></i>
+                </div>
+            </div>
 
 
 
-</div>
+        </div>
 
-<div class="c">
- <h4>About</h4>
- <a href="">About Us</a>
- <a href="">Delivery Informations</a>
- <a href="">Privacy & Policy</a>
- <a href="">Terms & Conditions</a>
- <a href="">Contact Us</a>
-</div>
-<div class="c">
- <h4>My Account</h4>
- <a href="">Sign In</a>
- <a href="">Delivery Informations</a>
- <a href="">View Cart</a>
- <a href="">My Wishlist</a>
- <a href="">Track My Order</a>
- <a href="">Help</a>
-</div>
-<div class="c in">
- <h4>Install App</h4>
- <p>From App Store or Goolge Play</p>
- <div class="row">
-     <img src="img/pay/app.jpg" alt="">
-     <img src="img/pay/play.jpg" alt="">
+        <div class="c">
+            <h4>About</h4>
+            <a href="">About Us</a>
+            <a href="">Delivery Informations</a>
+            <a href="">Privacy & Policy</a>
+            <a href="">Terms & Conditions</a>
+            <a href="">Contact Us</a>
+        </div>
+        <div class="c">
+            <h4>My Account</h4>
+            <a href="">Sign In</a>
+            <a href="">Delivery Informations</a>
+            <a href="">View Cart</a>
+            <a href="">My Wishlist</a>
+            <a href="">Track My Order</a>
+            <a href="">Help</a>
+        </div>
+        <div class="c in">
+            <h4>Install App</h4>
+            <p>From App Store or Goolge Play</p>
+            <div class="row">
+                <img src="img/pay/app.jpg" alt="">
+                <img src="img/pay/play.jpg" alt="">
 
- </div>
- <p>Secured Payment Gateways</p>
- <img src="img/pay/pay.png" alt="">
-</div>
-<div class="copyright">
- <p>© 2023, Deeshi Swag Created by Sohorab Mahmud Fahim</p>
-</div>
+            </div>
+            <p>Secured Payment Gateways</p>
+            <img src="img/pay/pay.png" alt="">
+        </div>
+        <div class="copyright">
+            <p>© 2024, Deeshi Swag Created by Sohorab Mahmud Fahim</p>
+        </div>
 
-</footer>
-            
-<script>
-   var MainImg = document.getElementById("MainImg");
-   var smallimg = document.getElementsByClassName("small-img");
-  
-   smallimg[0].onclick = function(){
-    MainImg.src = smallimg[0].src;
-   }
-   smallimg[1].onclick = function(){
-    MainImg.src = smallimg[1].src;
-   }
-   smallimg[2].onclick = function(){
-    MainImg.src = smallimg[2].src;
-   }
-   smallimg[3].onclick = function(){
-    MainImg.src = smallimg[3].src;
-   }
-</script>
-<script>// Function to perform product search
-  function searchProducts() {
-    // Get the value entered in the search input
-    const searchText = document.getElementById("product-search").value.toLowerCase();
-  
-    // Get all product descriptions
-    const descriptions = document.querySelectorAll(".description");
-  
-    // Loop through each product and check if the search text is present in the product name
-    descriptions.forEach((description) => {
-      const productName = description.querySelector("h5").innerText.toLowerCase();
-      const product = description.closest(".pro");
-      if (productName.includes(searchText)) {
-        product.style.display = "block";
-      } else {
-        product.style.display = "none";
-      }
-    });
-  }
-  </script>
-  
+    </footer>
+
     <script>
-  function addToCart() {
-    const productId = document.getElementById("productId").value;
+        var MainImg = document.getElementById("MainImg");
+        var smallimg = document.getElementsByClassName("small-img");
+
+        smallimg[0].onclick = function() {
+            MainImg.src = smallimg[0].src;
+        }
+        smallimg[1].onclick = function() {
+            MainImg.src = smallimg[1].src;
+        }
+        smallimg[2].onclick = function() {
+            MainImg.src = smallimg[2].src;
+        }
+        smallimg[3].onclick = function() {
+            MainImg.src = smallimg[3].src;
+        }
+    </script>
+    <script>
+        function searchProducts() {
+
+            const searchText = document.getElementById("product-search").value.toLowerCase();
+            const descriptions = document.querySelectorAll(".description");
+
+            descriptions.forEach((description) => {
+                const productName = description.querySelector("h5").innerText.toLowerCase();
+                const product = description.closest(".pro");
+                if (productName.includes(searchText)) {
+                    product.style.display = "block";
+                } else {
+                    product.style.display = "none";
+                }
+            });
+        }
+    </script>
+
+    <script>
+       function addToCart() {
     const productName = document.getElementById("productName").value;
     const productPrice = parseFloat(document.getElementById("productPrice").value);
     const productImage = document.getElementById("productImage").value;
-    const pageIdentifier = "s3product";
+    const selectedSize = document.getElementById("sizeSelect").value;
+    const selectedColor = document.getElementById("colorSelect").value; 
     const productQuantity = document.getElementById("quantity").value;
+    const productId = document.getElementById("productId").value;
+
+    const cartItem = {
+        id: productId,
+        name: productName,
+        price: productPrice,
+        image: productImage,
+        size: selectedSize,
+        color: selectedColor,
+        quantity: parseInt(productQuantity, 10) || 1
+    };
 
     let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingProductIndex = cart.findIndex(item => item.name === productName && item.color === selectedColor); 
 
-    const existingProductIndex =cart.findIndex(
-        (item) => item.productId === productId === productId && item.pageIdentifier === pageIdentifier
-    );
-
-    if (existingProductIndex !== -1){
-        cart[existingProductIndex].quantity += 1;
-    } else{
-        const cartItem = {
-          id: productId,
-      name: productName,
-      price: productPrice,
-      image: productImage,
-      quantity: productQuantity,
-      pageIdentifier, 
-    };
-    cart.push(cartItem);
+    if (existingProductIndex !== -1) {
+        cart[existingProductIndex].quantity += cartItem.quantity;
+    } else {
+        cart.push(cartItem);
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    }
+}
+    </script>
 
-    
-</script>
 
- 
 
-        <script src="script.js"></script>
-    </body>
+    <script src="script.js"></script>
+</body>
 
 </html>
