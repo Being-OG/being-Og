@@ -110,7 +110,7 @@ body {
 }
 
 #home1 {
-    background-image: url("img/hero4.jpg");
+    background-image: linear-gradient(rgba(156, 156, 156, 0.226)) url("img/webbanner.png");
     height: 90vh;
     width: 100%;
     background-position: top 25% right 0;
@@ -596,7 +596,6 @@ footer a:hover {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    max-width: 400px;
     margin: 10px auto;
 }
 
@@ -657,10 +656,17 @@ footer a:hover {
     font-size: 20px;
 }
 
-#cart-container {
-    border-radius: 10px;
-    border: 1px solid rgba(0, 0, 0, 0.171);
-    box-shadow: 0 5px 15px rgba( 0, 0, 0, 0.081);
+.cart-container {
+    display: flex;
+   justify-content: space-evenly;
+}
+@media (max-width:1200px){
+    .cart-container {
+        display: flex;
+       justify-content: center;
+       flex-direction: column;
+
+    }
 }
 
 .cart-item {
@@ -1124,18 +1130,7 @@ button:hover {
 
 /*meadia-q*/
 
-@media screen and (max-width: 600px) {
-    #cart {
-        padding: 10px;
-    }
-    #cart h2 {
-        font-size: 24px;
-    }
-    .total {
-        padding: 20px 10px;
-        text-align: center;
-    }
-}
+
 
 @media (min-width: 320px) {
     h1 {
