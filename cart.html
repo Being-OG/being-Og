@@ -563,45 +563,52 @@ ffunction calculateTotal() {
 }
 
         function confirmOrder(event) {
-            event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); // Prevent the default form submission
 
-            const fullName = document.getElementById("fullName").value.trim();
-            const address = document.getElementById("address").value.trim();
-            const contactNumber = document.getElementById("contactNumber").value.trim();
-            const email = document.getElementById("email").value.trim();
-            const reference = document.getElementById("reference").value.trim();
-            const notes = document.getElementById("notes").value.trim();
-            const paymentmethod = document.getElementById("Payment").value.trim();
-            const transitionid = document.getElementById("Transactionid").value.trim();
-            const transitionnumber = document.getElementById("PaymentNumber").value.trim();
-            const batch = document.getElementById("batch").value.trim();
+    const fullName = document.getElementById("fullName").value.trim();
+    const address = document.getElementById("address").value.trim();
+    const contactNumber = document.getElementById("contactNumber").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const reference = document.getElementById("reference").value.trim();
+    const notes = document.getElementById("notes").value.trim();
+    const paymentmethod = document.getElementById("Payment").value.trim();
+    const transitionid = document.getElementById("Transactionid").value.trim();
+    const transitionnumber = document.getElementById("PaymentNumber").value.trim();
+    const batch = document.getElementById("batch").value.trim();
 
-            const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-            let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
-            let totalPrice = productValue;
-            const freeDeliveryThreshold = 2000;
-            let deliveryFee = 0;
+    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
+    let productValue = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+    let totalPrice = productValue;
+    const freeDeliveryThreshold = 2000;
+    let deliveryFee = 0;
 
-            if (productValue < freeDeliveryThreshold) {
-                const insideDhakaSelected = document.getElementById("insideDhaka").checked;
-                deliveryFee = insideDhakaSelected ? 60 : 80;
-                totalPrice += deliveryFee;
-            }
+    // Delivery fee based on product value and selected option
+    if (productValue < freeDeliveryThreshold) {
+        const insideDhakaSelected = document.getElementById("insideDhaka").checked;
+        deliveryFee = insideDhakaSelected ? 60 : 110; // Assuming outsideDhakaFee is 110
+        totalPrice += deliveryFee;
+    }
 
-            const inputs = [fullName, address, contactNumber, email, reference, notes];
-            const isEmpty = inputs.some(input => input === "");
+    // Validate inputs
+    const inputs = [fullName, address, contactNumber, email, reference, notes];
+    const isEmpty = inputs.some(input => input === "");
+    if (isEmpty) {
+        alert("Please fill in all fields before confirming the order.");
+        return;
+    }
 
-            if (isEmpty) {
-                alert("Please fill in all fields before confirming the order.");
-                return;
-            }
+    // Validate email format
+    if (!validateEmail(email)) {
+        alert("Please enter a valid email address.");
+        return;
+    }
 
-            // Prepare the email content for admin
-            const cartItemsList = cartItems.map(item => `
+    // Prepare the email content for admin
+    const cartItemsList = cartItems.map(item => `
         - ${item.name} (Size: ${item.size}) - Quantity: ${item.quantity} - Price: ${item.price} TK
     `).join("");
 
-            const adminEmailContent = `
+    const adminEmailContent = `
         <b>New Order Received</b>
         <br/>
         <b>Name:</b> ${fullName}
@@ -616,9 +623,9 @@ ffunction calculateTotal() {
         <br/>
         <b>Payment Method:</b> ${paymentmethod}
         <br/>
-        <b>Payment number:</b> ${transitionnumber}
+        <b>Payment Number:</b> ${transitionnumber}
         <br/>
-        <b>transaction Id:</b> ${transitionid}
+        <b>Transaction ID:</b> ${transitionid}
         <br/>
         <b>Reference:</b> ${reference}
         <br/>
@@ -683,8 +690,15 @@ ffunction calculateTotal() {
         localStorage.removeItem("cart"); 
         displayCartItems();
     }).catch(error => {
-        alert("Error sending email: " + error);
+        console.error("Error sending email:", error); // Log the error for debugging
+        alert("Error sending email: " + error.message); // Provide user-friendly feedback
     });
+}
+
+// Function to validate email format
+function validateEmail(email) {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
 }
 
 
